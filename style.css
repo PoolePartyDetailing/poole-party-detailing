@@ -854,18 +854,27 @@ footer {
   .video-carousel { grid-auto-columns: 88%; }
 }
 
-.footer-inner {
+.footer-wrapper {
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  min-height: 80px;
+  padding: 20px 0;
+}
+
+.footer-center {
+  text-align: center;
+  color: #ffffff;
+  font-size: 14px;
 }
 
 .footer-right {
+  position: absolute;
+  right: 0;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .footer-right img {
@@ -875,18 +884,20 @@ footer {
 
 .footer-right span {
   color: #ffffff;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   white-space: nowrap;
 }
 
 @media (max-width: 768px) {
-  .footer-inner {
+  .footer-wrapper {
     flex-direction: column;
-    text-align: center;
+    gap: 15px;
+    padding-bottom: 20px;
   }
 
   .footer-right {
+    position: static;
     justify-content: center;
   }
 }
