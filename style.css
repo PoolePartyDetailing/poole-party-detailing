@@ -905,7 +905,7 @@ footer {
   }
 
   .footer-right {
-    position: static;
+    
     transform: none;
     justify-content: center;
   }
