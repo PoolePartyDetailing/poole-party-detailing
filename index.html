@@ -7,6 +7,17 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div id="splashScreen" class="splash-screen">
+  <div class="splash-content">
+    <span id="poweredByText" class="powered-by-text">Powered by</span>
+    <img
+      id="poweredByLogo"
+      src="fintech-logo.png"
+      alt="Powered by Fintech Lab"
+      class="powered-by-logo"
+    />
+  </div>
+</div>
   <header class="topbar">
     <div class="container topbar-inner">
       <div class="topbar-left">
@@ -278,5 +289,29 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+  window.addEventListener("load", function () {
+    const splash = document.getElementById("splashScreen");
+    const text = document.getElementById("poweredByText");
+    const logo = document.getElementById("poweredByLogo");
+
+    setTimeout(() => {
+      text.classList.add("show");
+    }, 100);
+
+    setTimeout(() => {
+      logo.classList.add("show");
+    }, 600);
+
+    setTimeout(() => {
+      splash.classList.add("hide");
+    }, 2300);
+
+    setTimeout(() => {
+      splash.remove();
+    }, 3400);
+  });
+</script>
+
 </body>
 </html>
