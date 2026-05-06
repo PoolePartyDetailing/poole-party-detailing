@@ -905,14 +905,8 @@ footer {
   }
 
   .footer-right {
-    
-    transform: none;
-    justify-content: center;
-  }
-}
-
-  .footer-right {
     position: static;
+    transform: none;
     justify-content: center;
   }
 }
