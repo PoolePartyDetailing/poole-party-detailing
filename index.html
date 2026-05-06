@@ -12,12 +12,13 @@
     <span id="poweredByText" class="powered-by-text">Powered by</span>
     <img
       id="poweredByLogo"
-      src="fintech-logo.png"
+      src="./calculator-mine-share.png"
       alt="Powered by Fintech Lab"
       class="powered-by-logo"
     />
   </div>
 </div>
+
   <header class="topbar">
     <div class="container topbar-inner">
       <div class="topbar-left">
@@ -287,13 +288,13 @@
       </div>
     </div>
   </footer>
-
-  <script src="script.js"></script>
-  <script>
-  window.addEventListener("load", function () {
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
     const splash = document.getElementById("splashScreen");
     const text = document.getElementById("poweredByText");
     const logo = document.getElementById("poweredByLogo");
+
+    if (!splash || !text || !logo) return;
 
     setTimeout(() => {
       text.classList.add("show");
@@ -308,10 +309,11 @@
     }, 2300);
 
     setTimeout(() => {
-      splash.remove();
+      splash.style.display = "none";
     }, 3400);
   });
 </script>
 
+  <script src="script.js"></script>
 </body>
 </html>
