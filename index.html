@@ -71,18 +71,20 @@
       </div>
       <div class="hero-form-card fade-up">
         <h3>Request a Quick Quote</h3>
-        <form id="contactForm" class="form-grid">
-          <input id="name" class="field" type="text" placeholder="Your name" />
-          <input id="email" class="field" type="email" placeholder="Email address" />
-          <input id="phone" class="field" type="tel" placeholder="Phone number" />
-          <select class="field" id="serviceType">
+        <form id="contactForm" action="https://formspree.io/f/maqgrney" method="POST" class="form-grid">
+          <input id="name" name="name" class="field" type="text" placeholder="Your name" required />
+          <input id="email" name="email" class="field" type="email" placeholder="Email address" required />
+          <input id="phone" name="phone" class="field" type="tel" placeholder="Phone number" required />
+          <select class="field" id="serviceType" name="service" required>
             <option value="">Select service</option>
-            <option>Exterior Wash</option>
-            <option>Interior Detailing</option>
-            <option>Full Premium Package</option>
+            <option value="Exterior Wash">>Exterior Wash</option>
+            <option value="Interior Detailing">Interior Detailing</option>
+            <option value="Full Premium Package">Full Premium Package</option>
           </select>
-          <textarea id="message" class="field" rows="4" placeholder="Tell us what service you need"></textarea>
-          <button class="btn pink" type="submit">Send Request</button>
+          <textarea id="message" name="message" class="field" rows="4" placeholder="Tell us what service you need"></textarea>
+          <input type="hidden" name="subject" value="New Quick Quote Request - Poole Party Detailing" />
+          <button class="btn pink" id="submitButton" type="submit">Send Request</button>
+          <p id="formStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
