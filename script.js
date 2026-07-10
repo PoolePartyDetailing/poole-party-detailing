@@ -68,10 +68,12 @@ const observer = new IntersectionObserver(
 document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
 
 const form = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+const submitButton = document.getElementById('submitButton');
 
 if (form) {
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
 
     const name = document.getElementById('name');
     const email = document.getElementById('email');
@@ -97,6 +99,7 @@ if (form) {
     }
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!email.value.trim() || !emailPattern.test(email.value)) {
       showError(email);
     } else {
@@ -104,6 +107,7 @@ if (form) {
     }
 
     const phonePattern = /^[0-9+\-\s()]{7,}$/;
+
     if (!phone.value.trim() || !phonePattern.test(phone.value)) {
       showError(phone);
     } else {
@@ -122,9 +126,66 @@ if (form) {
       clearError(message);
     }
 
-    if (isValid) {
-      alert('Form submitted successfully!');
+    if (!isValid) {
+      if (formStatus) {
+        formStatus.textContent =
+          'Please complete all required fields correctly.';
+      }
+      return;
+    }
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+    }
+
+    if (formStatus) {
+      formStatus.textContent = '';
+    }
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        const result = await response.json().catch(() => null);
+
+        const errorMessage =
+          result?.errors
+            ?.map((error) => error.message)
+            .join(', ') ||
+          'The request could not be sent. Please try again.';
+
+        throw new Error(errorMessage);
+      }
+
+      if (formStatus) {
+        formStatus.textContent =
+          'Thank you! Your request was sent successfully.';
+      }
+
       form.reset();
+
+      [name, email, phone, serviceType, message].forEach(clearError);
+    } catch (error) {
+      console.error('Form submission error:', error);
+
+      if (formStatus) {
+        formStatus.textContent =
+          error instanceof Error
+            ? error.message
+            : 'Something went wrong. Please try again.';
+      }
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send Request';
+      }
     }
   });
 }
