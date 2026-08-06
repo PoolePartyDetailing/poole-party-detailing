@@ -267,18 +267,24 @@
         <p>Have questions or want to schedule a wash? Send us your request and we’ll get back to you.</p>
       </div>
       <div class="contact-box">
-        <div class="panel fade-up">
-          <h3 style="margin-top:0;">Heaven Shine Car Wash</h3>
-          <p style="color: var(--muted); line-height:1.85;">
-            We are committed to providing high-quality car wash and detailing services with attention to detail and customer satisfaction.
-          </p>
-          <div class="contact-list">
-            <div class="contact-item"><strong>Phone:</strong> (575) 555-0188</div>
-            <div class="contact-item"><strong>Email:</strong> hello@heavenshinecarwash.com</div>
-            <div class="contact-item"><strong>Address:</strong> 245 Clean Street, Las Cruces, NM</div>
-            <div class="contact-item"><strong>Hours:</strong> Mon-Sat | 8:00 AM - 6:00 PM</div>
-          </div>
-        </div>
+        <div class="hero-form-card fade-up">
+        <h3>Request a Quick Quote</h3>
+        <form id="contactForm" action="https://formspree.io/f/maqgrney" method="POST" class="form-grid">
+          <input id="name" name="name" class="field" type="text" placeholder="Your name" required />
+          <input id="email" name="email" class="field" type="email" placeholder="Email address" required />
+          <input id="phone" name="phone" class="field" type="tel" placeholder="Phone number" required />
+          <select class="field" id="serviceType" name="service" required>
+            <option value="">Select service</option>
+            <option value="Exterior Wash">Exterior Wash</option>
+            <option value="Interior Detailing">Interior Detailing</option>
+            <option value="Full Premium Package">Full Premium Package</option>
+          </select>
+          <textarea id="message" name="message" class="field" rows="4" placeholder="Tell us what service you need"></textarea>
+          <input type="hidden" name="subject" value="New Quick Quote Request - Poole Party Detailing" />
+          <button class="btn pink" id="submitButton" type="submit">Send Request</button>
+          <p id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
         <div class="panel fade-up">
           <h3 style="margin-top:0;">Why Choose Us</h3>
           <ul class="check-list">
